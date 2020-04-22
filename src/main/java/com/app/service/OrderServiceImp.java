@@ -148,7 +148,7 @@ public class OrderServiceImp implements OrderServiceInf{
 	 */
 	@Transactional(rollbackOn = BookException.class)
 	@Override
-	public void removeOrder(int orderId) throws BookException {
+	public String removeOrder(int orderId) throws BookException {
 		List<BookingDetails> products = bookingRepository.getAllProductsOfAnOrder(this.findOrder(orderId));
 		for(BookingDetails product : products) {
 			int quantity = product.getQuantity();
@@ -161,6 +161,7 @@ public class OrderServiceImp implements OrderServiceInf{
 		for(BookingDetails product : products)
 			bookingRepository.removeBookingDetails(product.getBookingId());
 		orderRepository.removeOrder(orderId);
+		return "Order details is removed for order id = " + orderId;
 	}
 	
 	/**
@@ -171,13 +172,14 @@ public class OrderServiceImp implements OrderServiceInf{
 	 */
 	@Override
 	@Transactional(rollbackOn = BookException.class)
-	public void removeAllOrderOfAnUser(int userId) throws BookException {
+	public String removeAllOrderOfAnUser(int userId) throws BookException {
 		User user = userService.getUserById(userId);
 		List<OrderDetails> orders = orderRepository.getAllOrdersOfAnUser(user);
 		if(orders.isEmpty())
 			throw new BookException(HttpStatus.NOT_FOUND,"No order placed for user id "+userId);
 		for(OrderDetails order : orders)
 			this.removeOrder(order.getOrderId());
+		return "Orders are removed for user id = " + userId;
 	}
 	/**
 	 * Input order id and list of products

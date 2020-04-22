@@ -94,7 +94,9 @@ public class UserServiceImp implements UserServiceInf{
 	public boolean removeUser(int userId){
 		try {
 			orderService.removeAllOrderOfAnUser(userId);
-		}catch (BookException e) {}
+		}catch (BookException e) {
+			
+		}
 		try {
 			userRepository.deleteById(userId);
 			return true;

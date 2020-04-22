@@ -70,8 +70,8 @@ public class OrderController {
 	 * @throws BookException
 	 */
 	@DeleteMapping("/user/order/{orderId}")
-	public void removeOrder(@PathVariable("orderId")int orderId) throws BookException{
-		orderService.removeOrder(orderId);
+	public String removeOrder(@PathVariable("orderId")int orderId) throws BookException{
+		return orderService.removeOrder(orderId);
 	}
 	/**
 	 * @param user_id
@@ -81,8 +81,8 @@ public class OrderController {
 	 * @throws BookException
 	 */
 	@DeleteMapping("/user/orders/{userId}")
-	public void removeAllOrdersOfUser(@PathVariable("userId")int userId) throws BookException{
-		orderService.removeAllOrderOfAnUser(userId);
+	public String removeAllOrdersOfUser(@PathVariable("userId")int userId) throws BookException{
+		return orderService.removeAllOrderOfAnUser(userId);
 	}
 	/**
 	 * add more products in booking details for orderId and update Order table for orderId

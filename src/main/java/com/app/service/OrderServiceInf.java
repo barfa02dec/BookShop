@@ -19,7 +19,7 @@ public interface OrderServiceInf {
 	public double addProductsInOrder(int orderId,List<BookingDetails> bookingDetails) throws BookException;
 	public double removeProductsInOrder(int orderId,List<Integer> bookInventoryId) throws BookException;
 	/******************* Remove ********************/
-	public void removeAllOrderOfAnUser(int userId) throws BookException;
-	public void removeOrder(int orderId) throws BookException;
+	public String removeAllOrderOfAnUser(int userId) throws BookException;
+	public String removeOrder(int orderId) throws BookException;
 	
 	}

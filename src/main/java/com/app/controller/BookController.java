@@ -67,7 +67,6 @@ public class BookController {
 	 */
 	@GetMapping("/book/{bookId}")
 	public Book getBookById(@PathVariable("bookId")int bookId){
-		System.out.println(bookId);
 		return bookService.getBookById(bookId); 
 	}
 	/**
